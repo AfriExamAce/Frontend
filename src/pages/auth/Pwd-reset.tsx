@@ -51,7 +51,7 @@ const PwdReset = () => {
 					<p className="font-light text-sm text-gray-300">
 						Remembered your password?{" "}
 						<a
-							href="/register"
+							href="/login"
 							className="hover:text-yellow-600 text-gray-400 duration-300 underline font-normal focus:rounded-full focus:outline focus:outline-1 focus:outline-yellow-600">
 							Login here
 						</a>
