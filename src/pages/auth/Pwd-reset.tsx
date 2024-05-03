@@ -55,7 +55,7 @@ const PwdReset = () => {
 						<a
 							href="/login"
 							className="hover:text-yellow-600 text-gray-400 duration-300 underline font-normal focus:rounded-full focus:outline focus:outline-1 focus:outline-yellow-600">
-							Login here
+							login here
 						</a>
 					</p>
 				</footer>

@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
+import UseFetch from "../../components/general/UseFetch";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-	document.title = "Login | AfriExamAce";
-
+	const Navigate = useNavigate();
 	const [state, setState] = useState({
 		email: "",
 		password: "",
+		isLoading: false,
 		showPassword: false,
 	});
+
+	document.title = "Login | AfriExamAce";
 
 	const toggleShowPassword = () => {
 		setState((prevState) => ({
@@ -16,11 +20,33 @@ const Login = () => {
 		}));
 	};
 
-	const updateState = (val: string, data: string) => {
+	const updateState = (val: string, data: string | boolean) => {
 		setState((prevState) => ({
 			...prevState,
 			[val]: data,
 		}));
+	};
+
+	const handleFormSubmition = async (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		updateState("isLoading", true);
+
+		const { data, response } = await UseFetch({
+			url: "/login",
+			options: {
+				method: "POST",
+				useServerUrl: true,
+				body: {
+					email: state.email,
+					password: state.password,
+				},
+				returnResponse: true,
+			},
+		});
+
+		if (!response.ok) throw new Error("Handle using toast messages....");
+		Navigate("/", { replace: true });
+		updateState("isLoading", false);
 	};
 
 	return (
@@ -36,7 +62,8 @@ const Login = () => {
 			</header>
 
 			<form
-				action=""
+				onSubmit={handleFormSubmition}
+				method="POST"
 				className="flex flex-col gap-3 max-w-lg mx-auto mt-12">
 				<fieldset className="flex flex-col gap-1 px-2 focus-within:text-yellow-600">
 					<label htmlFor="email" className="duration-300 font-medium">
@@ -61,6 +88,7 @@ const Login = () => {
 							type={state.showPassword ? "text" : "password"}
 							name="password"
 							id="password"
+							disabled={state.isLoading}
 							value={state.password}
 							onChange={(e) =>
 								updateState("password", e.target.value)
@@ -97,15 +125,15 @@ const Login = () => {
 						<a
 							href="/register"
 							className="hover:text-yellow-600 text-gray-400 duration-300 underline font-normal focus:rounded-full focus:outline focus:outline-1 focus:outline-yellow-600">
-							Register now
+							register now
 						</a>
 					</p>
 					<p className="font-light text-sm text-gray-300">
 						Forgot password?{" "}
 						<a
 							href="./reset"
-							className="underline font-normal text-gray-400 duration-300 hover:text-yellow-600 focus:rounded-full focus:outline focus:outline-1 focus:outline-yellow-600">
-							Reset here
+							className=" font-normal text-gray-400 duration-300 hover:text-yellow-600 focus:rounded-full focus:outline focus:outline-1 focus:outline-yellow-600">
+							reset here
 						</a>
 					</p>
 				</footer>
