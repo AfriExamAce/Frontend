@@ -1,6 +1,8 @@
 import { useState } from "react";
 
 const Register = () => {
+	document.title = "Register | AfriExamAce";
+
 	const [state, setState] = useState({
 		email: "",
 		password: "",
@@ -30,13 +32,13 @@ const Register = () => {
 	};
 
 	return (
-		<div className="pt-28">
+		<div className="py-28 h-screen overflow-y-auto">
 			<header className="flex flex-col items-center">
 				<h1 className="text-3xl font-bold">
-					We’re glad to meet{" "}
-					<span className="text-yellow-700">you</span>! 🚀
+					We’re glad to{" "}
+					<span className="text-yellow-700">meet you</span>! 🚀
 				</h1>
-				<p className="text-neutral-400">
+				<p className="text-neutral-400 text-center">
 					Just fill in your details and you'll be created an account,
 					and taken there!
 				</p>

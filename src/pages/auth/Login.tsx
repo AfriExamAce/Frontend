@@ -1,6 +1,8 @@
 import { useState } from "react";
 
 const Login = () => {
+	document.title = "Login | AfriExamAce";
+
 	const [state, setState] = useState({
 		email: "",
 		password: "",
@@ -22,12 +24,12 @@ const Login = () => {
 	};
 
 	return (
-		<div className="pt-28">
+		<div className="py-28">
 			<header className="flex flex-col items-center">
 				<h1 className="text-3xl font-bold">
 					Welcome <span className="text-yellow-700">Back</span>! 👋
 				</h1>
-				<p className="text-neutral-400">
+				<p className="text-neutral-400 text-center">
 					Just fill in your details and you'll be taken to your
 					account!
 				</p>

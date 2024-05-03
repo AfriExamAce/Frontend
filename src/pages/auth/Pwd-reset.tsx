@@ -1,6 +1,8 @@
 import { useState } from "react";
 
 const PwdReset = () => {
+	document.title = "Reset Password | AfriExamAce";
+
 	const [state, setState] = useState({
 		email: "",
 	});
@@ -13,7 +15,7 @@ const PwdReset = () => {
 	};
 
 	return (
-		<div className="pt-28">
+		<div className="py-28">
 			<header className="flex flex-col items-center">
 				<h1 className="text-3xl font-bold">
 					Sorry for the{" "}
