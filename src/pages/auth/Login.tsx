@@ -1,14 +1,21 @@
 import { FormEvent, useState } from "react";
 import UseFetch from "../../components/general/UseFetch";
 import { useNavigate } from "react-router-dom";
+import { Toast } from "primereact/toast";
+import { Message } from "primereact/message";
+import { useRef } from "react";
+import { showSuccess } from "../../components/general/toast";
 
 const Login = () => {
 	const Navigate = useNavigate();
+	const toast = useRef<Toast>(null);
+
 	const [state, setState] = useState({
 		email: "",
 		password: "",
 		isLoading: false,
 		showPassword: false,
+		err: null,
 	});
 
 	document.title = "Login | AfriExamAce";
@@ -32,7 +39,7 @@ const Login = () => {
 		updateState("isLoading", true);
 
 		const { data, response } = await UseFetch({
-			url: "/login",
+			url: "auth/login",
 			options: {
 				method: "POST",
 				useServerUrl: true,
@@ -44,13 +51,24 @@ const Login = () => {
 			},
 		});
 
-		if (!response.ok) throw new Error("Handle using toast messages....");
+		if (!response.ok || !data.success) {
+			const { message } = data;
+			if (message) {
+				updateState("err", message);
+				updateState("isLoading", false);
+			}
+			return;
+		}
+
+		showSuccess(toast);
 		Navigate("/", { replace: true });
 		updateState("isLoading", false);
 	};
 
 	return (
 		<div className="py-28">
+			<Toast ref={toast} />
+
 			<header className="flex flex-col items-center">
 				<h1 className="text-3xl font-bold">
 					Welcome <span className="text-yellow-700">Back</span>! 👋
@@ -72,14 +90,15 @@ const Login = () => {
 					<input
 						type="email"
 						name="email"
+						required
 						id="email"
 						value={state.email}
 						onChange={(e) => updateState("email", e.target.value)}
-						className="outline outline-2 py-1 px-2 rounded-sm text-white bg-zinc-700 outline-zinc-800 active:outline-yellow-700 focus:outline-yellow-700"
+						className="outline outline-2 py-3 px-2 rounded-sm text-white bg-zinc-700 outline-zinc-800 active:outline-yellow-700 focus:outline-yellow-700"
 					/>
 				</fieldset>
 
-				<fieldset className="flex flex-col gap-1 px-2 focus-within:text-yellow-600">
+				<fieldset className="flex flex-col gap-1 px-2 focus-within:text-yellow-600 mb-2">
 					<label htmlFor="email" className="duration-300 font-medium">
 						Password
 					</label>
@@ -88,12 +107,13 @@ const Login = () => {
 							type={state.showPassword ? "text" : "password"}
 							name="password"
 							id="password"
+							required
 							disabled={state.isLoading}
 							value={state.password}
 							onChange={(e) =>
 								updateState("password", e.target.value)
 							}
-							className="py-1 border-none text-white outline-none bg-transparent w-full "
+							className="py-3 border-none text-white outline-none bg-transparent w-full "
 						/>
 						<div
 							tabIndex={0}
@@ -114,9 +134,12 @@ const Login = () => {
 					</div>
 				</fieldset>
 
+				{state.err && <Message severity="error" text={state.err} />}
+
 				<button
 					type="submit"
-					className="w-full bg-yellow-700 active:bg-yellow-800  hover:bg-yellow-800 duration-300 focus:outline-dashed outline outline-2 outline-yellow-900 py-1 text-white hover:text-neutral-300 font-medium max-w-sm mx-auto mt-6 rounded-md">
+					className="w-full bg-yellow-700 active:bg-yellow-800  hover:bg-yellow-800 duration-300 focus:outline-dashed outline outline-2 outline-yellow-900 py-3 text-white hover:text-neutral-300 font-medium max-w-sm mx-auto mt-6 rounded-md flex justify-center items-center gap-2 text-xl">
+					{state.isLoading && <i className="pi pi-spin pi-cog"></i>}
 					Log in
 				</button>
 				<footer className="mx-auto">

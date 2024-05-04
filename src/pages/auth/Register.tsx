@@ -1,7 +1,15 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
+import UseFetch from "../../components/general/UseFetch";
+import { useNavigate } from "react-router-dom";
+import { Toast } from "primereact/toast";
+import { Message } from "primereact/message";
+import { useRef } from "react";
+import { showSuccess } from "../../components/general/toast";
 
 const Register = () => {
 	document.title = "Register | AfriExamAce";
+	const Navigate = useNavigate();
+	const toast = useRef<Toast>(null);
 
 	const [state, setState] = useState({
 		email: "",
@@ -11,10 +19,11 @@ const Register = () => {
 		last_name: "",
 		showCPassword: false,
 		showPassword: false,
+		isLoading: false,
+		err: null,
 	});
 
 	const toggleShowPassword = (type: "confirm" | "normal") => {
-		console.log(type);
 		setState((prevState) => ({
 			...prevState,
 			[type === "normal" ? "showPassword" : "showCPassword"]:
@@ -24,15 +33,56 @@ const Register = () => {
 		}));
 	};
 
-	const updateState = (val: string, data: string) => {
+	const updateState = (val: string, data: string | boolean) => {
 		setState((prevState) => ({
 			...prevState,
 			[val]: data,
 		}));
 	};
 
+	const handleFormSubmition = async (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		updateState("isLoading", true);
+
+		if (state.password !== state.c_password) {
+			updateState("err", "Passwords do not match!");
+			updateState("isLoading", false);
+			return;
+		}
+
+		const { data, response } = await UseFetch({
+			url: "auth/register",
+			options: {
+				method: "POST",
+				useServerUrl: true,
+				body: {
+					first_name: state.first_name,
+					last_name: state.last_name,
+					email: state.email,
+					password: state.password,
+				},
+				returnResponse: true,
+			},
+		});
+
+		if (!response.ok || !data.success) {
+			const { message } = data;
+			if (message) {
+				updateState("err", message);
+				updateState("isLoading", false);
+			}
+			return;
+		}
+
+		showSuccess(toast);
+		Navigate("/", { replace: true });
+		updateState("isLoading", false);
+	};
+
 	return (
 		<div className="py-28 h-screen overflow-y-auto">
+			<Toast ref={toast} />
+
 			<header className="flex flex-col items-center">
 				<h1 className="text-3xl font-bold">
 					We’re glad to{" "}
@@ -46,6 +96,7 @@ const Register = () => {
 
 			<form
 				action=""
+				onSubmit={handleFormSubmition}
 				className="flex flex-col gap-3 max-w-lg mx-auto mt-12">
 				<fieldset className="flex flex-col gap-1 px-2 focus-within:text-yellow-600">
 					<label
@@ -62,7 +113,7 @@ const Register = () => {
 						onChange={(e) =>
 							updateState("first_name", e.target.value)
 						}
-						className="outline outline-2 py-1 px-2 rounded-sm text-white bg-zinc-700 outline-zinc-800 active:outline-yellow-700 focus:outline-yellow-700"
+						className="outline outline-2 py-3 px-2 rounded-sm text-white bg-zinc-700 outline-zinc-800 active:outline-yellow-700 focus:outline-yellow-700"
 					/>
 				</fieldset>
 
@@ -77,11 +128,11 @@ const Register = () => {
 						name="last_name"
 						id="last_name"
 						required
-						value={state.first_name}
+						value={state.last_name}
 						onChange={(e) =>
 							updateState("last_name", e.target.value)
 						}
-						className="outline outline-2 py-1 px-2 rounded-sm text-white bg-zinc-700 outline-zinc-800 active:outline-yellow-700 focus:outline-yellow-700"
+						className="outline outline-2 py-3 px-2 rounded-sm text-white bg-zinc-700 outline-zinc-800 active:outline-yellow-700 focus:outline-yellow-700"
 					/>
 				</fieldset>
 
@@ -93,9 +144,10 @@ const Register = () => {
 						type="email"
 						name="email"
 						id="email"
+						required
 						value={state.email}
 						onChange={(e) => updateState("email", e.target.value)}
-						className="outline outline-2 py-1 px-2 rounded-sm text-white bg-zinc-700 outline-zinc-800 active:outline-yellow-700 focus:outline-yellow-700"
+						className="outline outline-2 py-3 px-2 rounded-sm text-white bg-zinc-700 outline-zinc-800 active:outline-yellow-700 focus:outline-yellow-700"
 					/>
 				</fieldset>
 
@@ -111,10 +163,11 @@ const Register = () => {
 							name="password"
 							id="password"
 							value={state.password}
+							required
 							onChange={(e) =>
 								updateState("password", e.target.value)
 							}
-							className="py-1 border-none text-white outline-none bg-transparent w-full "
+							className="py-3 border-none text-white outline-none bg-transparent w-full "
 						/>
 						<div
 							tabIndex={0}
@@ -146,11 +199,12 @@ const Register = () => {
 							type={state.showCPassword ? "text" : "password"}
 							name="c_password"
 							id="c_password"
+							required
 							value={state.c_password}
 							onChange={(e) =>
 								updateState("c_password", e.target.value)
 							}
-							className="py-1 border-none text-white outline-none bg-transparent w-full "
+							className="py-3 border-none text-white outline-none bg-transparent w-full "
 						/>
 						<div
 							tabIndex={0}
@@ -171,9 +225,12 @@ const Register = () => {
 					</div>
 				</fieldset>
 
+				{state.err && <Message severity="error" text={state.err} />}
+
 				<button
 					type="submit"
-					className="w-full bg-yellow-700 active:bg-yellow-800  hover:bg-yellow-800 duration-300 focus:outline-dashed outline outline-2 outline-yellow-900 py-1 text-white hover:text-neutral-300 font-medium max-w-sm mx-auto mt-6 rounded-md">
+					className="w-full bg-yellow-700 active:bg-yellow-800  hover:bg-yellow-800 duration-300 focus:outline-dashed outline outline-2 outline-yellow-900 py-3 text-white hover:text-neutral-300 font-medium max-w-sm mx-auto mt-6 rounded-md flex justify-center items-center gap-2 text-xl">
+					{state.isLoading && <i className="pi pi-spin pi-cog"></i>}
 					Register
 				</button>
 				<footer className="mx-auto">
