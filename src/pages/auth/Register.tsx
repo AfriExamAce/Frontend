@@ -33,7 +33,7 @@ const Register = () => {
 		}));
 	};
 
-	const updateState = (val: string, data: string | boolean) => {
+	const updateState = (val: string, data: string | boolean | null) => {
 		setState((prevState) => ({
 			...prevState,
 			[val]: data,
@@ -43,6 +43,7 @@ const Register = () => {
 	const handleFormSubmition = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		updateState("isLoading", true);
+		updateState("err", null);
 
 		if (state.password !== state.c_password) {
 			updateState("err", "Passwords do not match!");

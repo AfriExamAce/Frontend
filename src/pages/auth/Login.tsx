@@ -27,7 +27,7 @@ const Login = () => {
 		}));
 	};
 
-	const updateState = (val: string, data: string | boolean) => {
+	const updateState = (val: string, data: string | boolean | null) => {
 		setState((prevState) => ({
 			...prevState,
 			[val]: data,
@@ -37,6 +37,7 @@ const Login = () => {
 	const handleFormSubmition = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		updateState("isLoading", true);
+		updateState("err", null);
 
 		const { data, response } = await UseFetch({
 			url: "auth/login",
