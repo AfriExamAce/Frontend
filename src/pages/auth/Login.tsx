@@ -61,7 +61,7 @@ const Login = () => {
 			return;
 		}
 
-		showSuccess(toast);
+		showSuccess(toast, "Successfully logged in!");
 		Navigate("/", { replace: true });
 		updateState("isLoading", false);
 	};

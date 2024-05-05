@@ -75,7 +75,7 @@ const Register = () => {
 			return;
 		}
 
-		showSuccess(toast);
+		showSuccess(toast, "Successfully registered!");
 		Navigate("/", { replace: true });
 		updateState("isLoading", false);
 	};
