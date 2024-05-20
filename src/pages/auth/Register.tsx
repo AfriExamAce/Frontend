@@ -42,8 +42,7 @@ const Register = () => {
 
 	const handleFormSubmition = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		updateState("isLoading", true);
-		updateState("err", null);
+		setState((prev) => ({ ...prev, isLoading: true, err: null }));
 
 		if (state.password !== state.c_password) {
 			updateState("err", "Passwords do not match!");

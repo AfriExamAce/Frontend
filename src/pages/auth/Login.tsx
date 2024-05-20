@@ -36,8 +36,7 @@ const Login = () => {
 
 	const handleFormSubmition = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		updateState("isLoading", true);
-		updateState("err", null);
+		setState((prev) => ({ ...prev, isLoading: true, err: null }));
 
 		const { data, response } = await UseFetch({
 			url: "auth/login",
