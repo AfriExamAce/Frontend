@@ -1,20 +1,5 @@
 import { useEffect, useState } from "react";
-
-// const boards = [
-// 	{
-// 		name: "WAEC",
-// 		subjects: ["W-Mathematics", "W-English", "W-Physics", "W-Biology"],
-// 	},
-// 	{
-// 		name: "NECO",
-// 		subjects: ["N-Mathematics", "N-English", "N-Physics", "N-Biology"],
-// 	},
-
-// 	{
-// 		name: "JAMB",
-// 		subjects: ["J-Mathematics", "J-English", "J-Physics", "J-Biology"],
-// 	},
-// ];
+import DOMPurify from "dompurify";
 
 type Board = {
 	id: string;
@@ -124,23 +109,22 @@ const Home = () => {
 						<h3>
 							{active.subject?.name} - {active.board?.name}
 						</h3>
-						<>
-							{active.subject?.topic.map((topic) => (
-								<div
-									className="outline outline-1 h-fit px-4 my-2 py-4 cursor-pointer list-none"
-									onClick={() =>
-										setDisplayContent({
-											display: true,
-											topic,
-										})
-									}>
-									<h3>{topic.name}</h3>
-									<p className="text-sm font-light text-neutral-200">
-										{topic.description}
-									</p>
-								</div>
-							))}
-						</>
+						{active.subject?.topic.map((topic) => (
+							<div
+								key={topic.id}
+								className="outline outline-1 h-fit px-4 my-2 py-4 cursor-pointer list-none"
+								onClick={() =>
+									setDisplayContent({
+										display: true,
+										topic,
+									})
+								}>
+								<h3>{topic.name}</h3>
+								<p className="text-sm font-light text-neutral-200">
+									{topic.description}
+								</p>
+							</div>
+						))}
 					</div>
 				)}
 
@@ -149,7 +133,13 @@ const Home = () => {
 						<h3 className="text-2xl font-bold underline mb-1">
 							{displayContent.topic?.name}
 						</h3>
-						<p>{displayContent.topic?.content}</p>
+						{/* <UseEditor /> */}
+						<div
+							dangerouslySetInnerHTML={{
+								__html: DOMPurify.sanitize(
+									displayContent.topic?.content || ""
+								),
+							}}></div>
 					</div>
 				)}
 
