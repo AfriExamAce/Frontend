@@ -36,14 +36,14 @@ const Sidebar = () => {
 
 	return (
 		<aside
-			className={`flex flex-col h-screen py-8 w-full ${
+			className={`flex flex-col h-full py-8 w-full ${
 				isExpanded ? "max-w-[350px]" : "max-w-fit"
-			} px-6 bg-[${sidebar_background}]`}>
+			} px-1 sm:px-6 bg-[${sidebar_background}]`}>
 			<div className="flex flex-col gap-9 w-full h-full">
 				{!isExpanded && (
 					<img
 						src={profile_picture}
-						className="w-[80px] mx-auto aspect-auto rounded-full cursor-pointer"
+						className="w-[48px] sm:w-[80px] mx-auto aspect-auto rounded-full cursor-pointer"
 						alt=""
 						tabIndex={1}
 					/>
