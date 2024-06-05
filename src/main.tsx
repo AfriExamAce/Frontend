@@ -4,12 +4,15 @@ import App from "./App.tsx";
 import "./index.css";
 import { PrimeReactProvider } from "primereact/api";
 import { BrowserRouter } from "react-router-dom";
+import { MathJaxContext } from "better-react-mathjax";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
 		<PrimeReactProvider>
 			<BrowserRouter>
-				<App />
+				<MathJaxContext>
+					<App />
+				</MathJaxContext>
 			</BrowserRouter>
 		</PrimeReactProvider>
 	</React.StrictMode>
