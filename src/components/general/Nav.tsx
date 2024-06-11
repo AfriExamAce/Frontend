@@ -3,7 +3,12 @@ import Logo from "../../assets/logo.svg";
 const Nav = () => {
 	return (
 		<nav className="flex justify-between items-center py-6 font-CabinetGrotesk-Medium">
-			<img className="cursor-pointer" src={Logo} alt="AfriExamAce Logo" />
+			<img
+				className="cursor-pointer"
+				src={Logo}
+				draggable="false"
+				alt="AfriExamAce Logo"
+			/>
 
 			<ul className="flex flex-row items-center gap-10 text-sm">
 				<li className="cursor-pointer">Home</li>

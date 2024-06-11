@@ -48,7 +48,11 @@ const Home = () => {
 				</div>
 
 				<section className="mt-20">
-					<img src={Desktop} alt="AfriExamAce Dashboard view" />
+					<img
+						draggable="false"
+						src={Desktop}
+						alt="AfriExamAce Dashboard view"
+					/>
 				</section>
 
 				<section className="mt-52 text-center">
@@ -191,7 +195,11 @@ const Home = () => {
 				</section>
 				<section className="px-12 py-10 mt-6 flex flex-row justify-between">
 					<div>
-						<img src={Icon_logo} alt="AfriExamAce Logo" />
+						<img
+							draggable="false"
+							src={Icon_logo}
+							alt="AfriExamAce Logo"
+						/>
 					</div>
 					<div className="flex flex-row gap-8 font-CabinetGrotesk-Medium">
 						<ul className="flex flex-col gap-2 clickable">

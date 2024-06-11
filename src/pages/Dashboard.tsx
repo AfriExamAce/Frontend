@@ -6,7 +6,7 @@ const Dashboard = () => {
 
 	useEffect(() => {
 		(async () => {
-			const { data, response } = await UseFetch({
+			const { data } = await UseFetch({
 				url: "auth/me",
 				options: {
 					method: "GET",
