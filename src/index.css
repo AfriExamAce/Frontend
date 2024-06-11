@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.rainbow-bg {
+    background: rgb(187, 33, 12);
+    background: -moz-linear-gradient(145deg, rgba(187, 33, 12, 1) 18%, rgba(108, 99, 255, 1) 55%, rgba(0, 255, 71, 1) 100%);
+    background: -webkit-linear-gradient(145deg, rgba(187, 33, 12, 1) 18%, rgba(108, 99, 255, 1) 55%, rgba(0, 255, 71, 1) 100%);
+    background: linear-gradient(145deg, rgba(187, 33, 12, 1) 18%, rgba(108, 99, 255, 1) 55%, rgba(0, 255, 71, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#bb210c", endColorstr="#00ff47", GradientType=1);
+}
+
+.clickable>li:first-child {
+    cursor: default;
+}
+
+.clickable>li:not(:first-child) {
+    cursor: pointer;
+}
