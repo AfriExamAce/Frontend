@@ -10,13 +10,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tinymce/tinymce-react": "^5.0.1",
+    "better-react-mathjax": "^2.0.3",
+    "dompurify": "^3.1.4",
+    "jsdom": "^24.0.0",
     "primeicons": "^7.0.0",
-    "primereact": "^10.6.4",
+    "primereact": "^10.6.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.0"
   },
   "devDependencies": {
+    "@types/dompurify": "^3.0.5",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
