@@ -17,3 +17,7 @@
 .clickable>li:not(:first-child) {
     cursor: pointer;
 }
+
+* {
+    cursor: none !important;
+}

@@ -1,13 +1,124 @@
 import Nav from "../components/general/Nav";
 import Desktop from "../assets/Desktop - 33.svg";
 import Icon_logo from "../assets/icon-logo.svg";
+import stars from "../assets/stars.svg";
+import { useEffect, useState } from "react";
 
 const Home = () => {
+	const [cursor, setCusor] = useState({ x: 0, y: 0, clicked: false });
+
+	useEffect(() => {
+		document.addEventListener("mousemove", (e) => {
+			setCusor((prev) => ({ ...prev, x: e.clientX, y: e.clientY }));
+		});
+
+		document.addEventListener("mousedown", () => {
+			setCusor((prev) => ({ ...prev, clicked: true }));
+		});
+
+		// document.addEventListener("mouseup", () => {
+		// 	setCusor((prev) => ({ ...prev, clicked: false }));
+		// });
+	}, []);
+
 	return (
-		<div className="overflow-y-auto w-full h-full">
+		<div className="overflow-y-auto w-full h-full !cursor-none">
+			<div
+				onClick={() => console.log(cursor)}
+				style={{
+					top: cursor.y + "px",
+					left: cursor.x + "px",
+					scale: cursor.clicked ? "150%" : "100%",
+				}}
+				className={`w-8 h-8 rounded-full bg-green-600 fixed z-50 duration-75`}></div>
 			<div className="px-12">
 				<Nav />
-				<div className="w-full bg-[#141414] text-center h-[556px] rounded-[40px] relative overflow-hidden font-CabinetGrotesk-Medium flex flex-col items-center py-20 mt-12">
+				<div className="w-full bg-[#141414] text-center h-[556px] rounded-[40px] overflow-hidden font-CabinetGrotesk-Medium flex flex-col items-center py-20 mt-12 relative">
+					<div>
+						<p className="bg-[#D9D9D9] px-8 py-3 rounded-[40px] text-xl text-black font-CabinetGrotesk-Bold -rotate-45 absolute bottom-10 left-0">
+							QUALIFY
+						</p>
+						<p className="bg-[#4185F4] px-8 py-3 rounded-[40px] text-xl text-black font-CabinetGrotesk-Bold -rotate-12 absolute bottom-20 left-36">
+							SUCCESS
+						</p>
+						<p className="bg-[#FB6F3C] px-8 py-3 rounded-[40px] text-xl text-black font-CabinetGrotesk-Bold rotate-[25deg] absolute bottom-48 left-10">
+							PROGRESS
+						</p>
+						<svg
+							width="60"
+							height="75"
+							viewBox="0 0 60 75"
+							className="absolute right-32 top-6"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg">
+							<path
+								d="M43.3007 0.375305C37.8365 18.9005 46.1304 32.1124 59.2562 49.3757L0.706381 26.0905C23.5272 22.2107 36.1257 17.5692 43.3007 0.375305Z"
+								fill="#4185F4"
+							/>
+							<path
+								d="M14.049 74.0517C19.5132 55.5265 13.8322 43.3538 0.706381 26.0905L59.2562 49.3757C36.4354 53.2555 21.224 56.8579 14.049 74.0517Z"
+								fill="#4185F4"
+							/>
+						</svg>
+						<svg
+							width="21"
+							height="17"
+							viewBox="0 0 21 17"
+							fill="none"
+							className="absolute right-5 top-7"
+							xmlns="http://www.w3.org/2000/svg">
+							<path
+								d="M20.2187 3.47353C15.6465 6.16453 14.8313 10.3712 14.2253 16.2971L6.84889 0.639977C12.1549 4.14364 15.5532 5.57645 20.2187 3.47353Z"
+								fill="#86E0C0"
+							/>
+							<path
+								d="M0.526307 12.7649C5.09844 10.0739 6.24281 6.56597 6.84889 0.639977L14.2253 16.2971C8.91927 12.7935 5.19182 10.6619 0.526307 12.7649Z"
+								fill="#86E0C0"
+							/>
+						</svg>
+
+						<p className="text-black bg-white px-8 py-5 rounded-full text-2xl -rotate-[25deg] font-CabinetGrotesk-Bold absolute top-10 z-10 right-8">
+							100%
+						</p>
+						<img
+							src={stars}
+							alt=""
+							className="absolute top-32 right-12"
+						/>
+
+						<svg
+							width="60"
+							height="75"
+							viewBox="0 0 60 75"
+							className="absolute right-4 bottom-40 rotate-12"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg">
+							<path
+								d="M43.3007 0.375305C37.8365 18.9005 46.1304 32.1124 59.2562 49.3757L0.706381 26.0905C23.5272 22.2107 36.1257 17.5692 43.3007 0.375305Z"
+								fill="#FB6F3C"
+							/>
+							<path
+								d="M14.049 74.0517C19.5132 55.5265 13.8322 43.3538 0.706381 26.0905L59.2562 49.3757C36.4354 53.2555 21.224 56.8579 14.049 74.0517Z"
+								fill="#FB6F3C"
+							/>
+						</svg>
+						<svg
+							width="60"
+							height="75"
+							viewBox="0 0 60 75"
+							className="absolute right-16 bottom-9 -rotate-45"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg">
+							<path
+								d="M43.3007 0.375305C37.8365 18.9005 46.1304 32.1124 59.2562 49.3757L0.706381 26.0905C23.5272 22.2107 36.1257 17.5692 43.3007 0.375305Z"
+								fill="#3F1CCB"
+							/>
+							<path
+								d="M14.049 74.0517C19.5132 55.5265 13.8322 43.3538 0.706381 26.0905L59.2562 49.3757C36.4354 53.2555 21.224 56.8579 14.049 74.0517Z"
+								fill="#3F1CCB"
+							/>
+						</svg>
+					</div>
 					<h1 className="text-6xl max-w-[800px]">
 						Unlock Your{" "}
 						<div className="max-w-fit inline-block">
@@ -44,7 +155,7 @@ const Home = () => {
 						Platform
 					</p>
 
-					<div className="blur-[100px] h-[460px] rounded-full w-[460px] transition-blur duration-default ease-smooth mx-auto bg-[#9239B2] absolute -bottom-[420px] left-0 right-0"></div>
+					<div className="blur-[130px] h-[460px] rounded-full w-[460px] transition-blur duration-default ease-smooth mx-auto bg-[#9239B2] absolute -bottom-[420px] left-0 right-0"></div>
 				</div>
 
 				<section className="mt-20">
