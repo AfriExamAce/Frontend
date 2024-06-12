@@ -21,3 +21,24 @@
 * {
     cursor: none !important;
 }
+
+.custom-scrollbar::-webkit-scrollbar {
+    display: none;
+    /* width: 12px; */
+    /* height: 20px; */
+}
+
+/* .custom-scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #181818;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #9239B2;
+    border-radius: 100vh;
+    border: 1px solid #f6f7ed;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #3a1448;
+} */

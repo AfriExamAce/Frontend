@@ -16,13 +16,13 @@ const Home = () => {
 			setCusor((prev) => ({ ...prev, clicked: true }));
 		});
 
-		// document.addEventListener("mouseup", () => {
-		// 	setCusor((prev) => ({ ...prev, clicked: false }));
-		// });
+		document.addEventListener("mouseup", () => {
+			setCusor((prev) => ({ ...prev, clicked: false }));
+		});
 	}, []);
 
 	return (
-		<div className="overflow-y-auto w-full h-full !cursor-none">
+		<div className="overflow-y-auto w-full h-full !cursor-none custom-scrollbar">
 			<div
 				onClick={() => console.log(cursor)}
 				style={{
@@ -30,7 +30,7 @@ const Home = () => {
 					left: cursor.x + "px",
 					scale: cursor.clicked ? "150%" : "100%",
 				}}
-				className={`w-8 h-8 rounded-full bg-green-600 fixed z-50 duration-75`}></div>
+				className={`w-8 h-8 rounded-full bg-green-600 fixed z-50`}></div>
 			<div className="px-12">
 				<Nav />
 				<div className="w-full bg-[#141414] text-center h-[556px] rounded-[40px] overflow-hidden font-CabinetGrotesk-Medium flex flex-col items-center py-20 mt-12 relative">
