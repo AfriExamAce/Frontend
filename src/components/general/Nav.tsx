@@ -4,22 +4,37 @@ const Nav = () => {
 	return (
 		<nav className="flex justify-between items-center py-6 font-CabinetGrotesk-Medium">
 			<img
-				className="cursor-pointer"
+				tabIndex={1}
+				className="p-2 rounded-md hover:border-violet-500 focus:border-violet-500 border-2 border-transparent outline-none cursor-pointer"
 				src={Logo}
 				draggable="false"
 				alt="AfriExamAce Logo"
 			/>
 
 			<ul className="flex flex-row items-center gap-10 text-sm">
-				<li className="cursor-pointer">Home</li>
-				<li className="cursor-pointer">About Us</li>
-				<li className="cursor-pointer">Contact Us</li>
+				<li
+					tabIndex={1}
+					className="p-2 outline-none cursor-pointer underline-effect nav-focus_effect">
+					Home <div></div>
+				</li>
+				<li
+					tabIndex={1}
+					className="p-2 outline-none cursor-pointer underline-effect nav-focus_effect">
+					About Us <div></div>
+				</li>
+				<li
+					tabIndex={1}
+					className="p-2 outline-none cursor-pointer underline-effect nav-focus_effect">
+					Contact Us <div></div>
+				</li>
 			</ul>
 
 			<section className="flex flex-row w-fit items-center gap-4 text-base">
-				<button>Log In</button>
+				<button className="border-2 border-transparent p-2 rounded-md hover:border-violet-500 focus:border-violet-300 outline-none">
+					Log In
+				</button>
 
-				<button className="bg-white px-5 py-[10px] text-black rounded-md">
+				<button className="bg-white px-5 py-[10px] text-black rounded-md border-2 border-white hover:border-violet-500 focus:border-violet-500 outline-none">
 					Subscribe
 				</button>
 			</section>

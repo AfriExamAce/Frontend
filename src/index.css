@@ -19,7 +19,28 @@
 }
 
 * {
-    cursor: none !important;
+    /* cursor: none !important; */
+}
+
+.underline-effect:hover>div {
+    width: 100%;
+    transition: width 0.3s ease-in-out;
+    background-color: #fcf2ff;
+    height: 2px;
+    border-radius: 50px;
+}
+
+.underline-effect>div {
+    width: 0;
+    height: 2px;
+}
+
+.nav-focus_effect:focus>div {
+    width: 100%;
+    transition: width 0.3s ease-in-out;
+    background-color: #fcf2ff;
+    height: 2px;
+    border-radius: 50px;
 }
 
 .custom-scrollbar::-webkit-scrollbar {
