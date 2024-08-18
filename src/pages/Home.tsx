@@ -36,7 +36,7 @@ const Home = () => {
 					scale: cursor.clicked ? "150%" : "100%",
 				}}
 				className={`w-8 h-8 rounded-full bg-green-600 fixed z-50`}></div> */}
-			<div className="px-24 max-w-screen-2xl overflow-hidden mx-auto">
+			<div className="px-2 sm:px-4 md:px-24 max-w-screen-2xl overflow-hidden mx-auto">
 				<Nav />
 				<header className="w-full bg-[#141414] text-center h-[556px] rounded-[40px] overflow-hidden font-CabinetGrotesk-Medium flex flex-col items-center py-20 mt-12 relative">
 					<div>
@@ -193,10 +193,10 @@ const Home = () => {
 				</section>
 
 				<div className="flex flex-col gap-36 mt-36">
-					<section className="flex flex-row items-center gap-16">
+					<section className="flex flex-row flex-wrap justify-center items-center gap-16">
 						<img
 							src={Frame1}
-							className="bg-[#141414] h-[620px] w-[620px] outline-none border-none rounded-3xl"></img>
+							className="bg-[#141414] w-fit h-fit md:h-[620px] md:w-[620px] outline-none border-none rounded-3xl aspect-square object-contain"></img>
 						<div className="max-w-[650px] flex flex-col gap-8">
 							<div className="flex flex-row gap-2 items-center">
 								<div className="w-2 h-2 rounded-full bg-purple-600"></div>
@@ -220,7 +220,7 @@ const Home = () => {
 						</div>
 					</section>
 
-					<section className="flex flex-row items-center gap-16">
+					<section className="flex flex-row flex-wrap-reverse justify-center items-center gap-16">
 						<div className="max-w-[650px] flex flex-col gap-8">
 							<div className="flex flex-row gap-2 items-center">
 								<div className="w-2 h-2 rounded-full bg-green-400"></div>
@@ -244,13 +244,13 @@ const Home = () => {
 						</div>
 						<img
 							src={Frame2}
-							className="bg-[#141414] border-none outline-none h-[620px] w-[620px] rounded-3xl"></img>
+							className="bg-[#141414] border-none outline-none md:h-[620px] md:w-[620px] rounded-3xl aspect-square object-cover"></img>
 					</section>
 
-					<section className="flex flex-row items-center gap-16">
+					<section className="flex flex-row flex-wrap justify-center items-center gap-16">
 						<img
 							src={FrameLeaderboard}
-							className="bg-[#141414] outline-none border-none h-[620px] w-[620px] rounded-3xl"></img>
+							className="bg-[#141414] outline-none border-none md:h-[620px] md:w-[620px] object-cover aspect-square rounded-3xl"></img>
 						<div className="max-w-[650px] flex flex-col gap-8">
 							<div className="flex flex-row gap-2 items-center">
 								<div className="w-2 h-2 rounded-full bg-yellow-400"></div>
@@ -278,7 +278,7 @@ const Home = () => {
 						</div>
 					</section>
 
-					<section className="flex flex-row items-center gap-16">
+					<section className="flex flex-row flex-wrap-reverse justify-center items-center gap-16">
 						<div className="max-w-[650px] flex flex-col gap-8">
 							<div className="flex flex-row gap-2 items-center">
 								<div className="w-2 h-2 rounded-full bg-yellow-400"></div>
@@ -303,12 +303,14 @@ const Home = () => {
 						</div>
 						<img
 							src={FrameTask}
-							className="bg-[#141414] border-none outline-none h-[620px] w-[620px] rounded-3xl"></img>
+							className="bg-[#141414] border-none outline-none md:h-[620px] md:w-[620px] rounded-3xl aspect-square object-cover"></img>
 					</section>
 				</div>
 
 				<section className="mt-44 flex flex-col items-center gap-6">
-					<h3 className="text-4xl mx-auto w-fit">How it works.</h3>
+					<h3 className="text-4xl mx-auto w-fit font-CabinetGrotesk-Medium">
+						How it works.
+					</h3>
 
 					<div className="w-full flex flex-row items-center justify-between h-[300px] bg-[#141414] px-8 rounded-2xl mt-8 border-2 border-[#141414] hover:border-violet-500 transition-all duration-300">
 						<div></div>
@@ -319,9 +321,9 @@ const Home = () => {
 							flashcard sets to target specific topics.{" "}
 						</p>
 					</div>
-					<div className="w-full flex flex-row gap-4">
+					<div className="w-full flex flex-row flex-wrap gap-4">
 						<div className="w-full flex flex-row items-center justify-between h-[500px] bg-[#141414] px-8 rounded-2xl mt-8 border-2 border-[#141414] hover:border-violet-500 transition-all duration-300"></div>
-						<div className="flex flex-row items-center justify-between min-w-[500px] h-[500px] bg-[#141414] px-8 rounded-2xl mt-8 border-2 border-[#141414] hover:border-violet-500 transition-all duration-300"></div>
+						<div className="flex flex-row items-center justify-between w-full md:min-w-[500px] h-[500px] bg-[#141414] px-8 rounded-2xl mt-8 border-2 border-[#141414] hover:border-violet-500 transition-all duration-300"></div>
 					</div>
 				</section>
 
@@ -335,16 +337,16 @@ const Home = () => {
 						<div className="w-full h-full bg-[#141414] rounded-md border-2 border-[#141414] hover:border-violet-500 transition-all duration-300"></div>
 						<div className="w-full h-full flex flex-col gap-2">
 							<div className="h-full bg-[#141414] w-full rounded-md border-2 border-[#141414] hover:border-violet-500 transition-all duration-300"></div>
-							<div className="h-full flex flex-row gap-2">
+							<div className="h-full flex flex-row flex-wrap gap-2">
 								<div className="bg-[#141414] w-full rounded-md border-2 border-[#141414] hover:border-violet-500 transition-all duration-300"></div>
-								<div className="bg-[#141414] w-2/3 rounded-md border-2 border-[#141414] hover:border-violet-500 transition-all duration-300"></div>
+								<div className="bg-[#141414] w-full md:w-2/3 rounded-md border-2 border-[#141414] hover:border-violet-500 transition-all duration-300"></div>
 							</div>
 						</div>
 					</div>
 				</section>
 
 				<footer className="mt-64">
-					<section className="px-12 flex flex-row justify-between">
+					<section className="px-2 sm:px-12 flex flex-row flex-wrap gap-y-12 justify-between">
 						<div className="max-w-[400px]">
 							<h6 className="font-CabinetGrotesk-Medium text-xl">
 								Subscribe to join our Discord Community.
@@ -355,8 +357,8 @@ const Home = () => {
 								updates, and team picks.
 							</p>
 						</div>
-						<fieldset className="flex flex-row gap-2 h-fit">
-							<div className="flex flex-row items-center text-[#CCCCCC66] placeholder:text-[#CCCCCC66] px-2 border-2 border-white hover:border-violet-500 focus-within:border-violet-300 outline-none rounded-md">
+						<fieldset className="flex flex-row flex-wrap gap-2 h-fit">
+							<div className="flex flex-row items-center bg-transparent text-[#CCCCCC66] placeholder:text-[#CCCCCC66] px-2 border-2 border-white hover:border-violet-500 focus-within:border-violet-300 outline-none rounded-md">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									fill="none"
@@ -377,7 +379,7 @@ const Home = () => {
 									id="early-access-email"
 									autoComplete="off"
 									placeholder="Enter your email"
-									className="border-none px-3 py-2 w-[300px] font-CabinetGrotesk-Regular outline-none placeholder:text-gray-300 text-white"
+									className="border-none px-3 py-2 w-full md:w-[300px] font-CabinetGrotesk-Regular outline-none bg-transparent placeholder:text-gray-300 text-white"
 								/>
 							</div>
 
@@ -388,7 +390,7 @@ const Home = () => {
 							</button>
 						</fieldset>
 					</section>
-					<section className="px-12 py-10 mt-6 flex flex-row justify-between">
+					<section className="px-2 sm:px-12 py-10 mt-6 flex flex-row flex-wrap gap-y-4 justify-between">
 						<div>
 							<img
 								draggable="false"
@@ -396,7 +398,7 @@ const Home = () => {
 								alt="AfriExamAce Logo"
 							/>
 						</div>
-						<div className="flex flex-row gap-8 font-CabinetGrotesk-Medium">
+						<div className="flex flex-row flex-wrap gap-8 font-CabinetGrotesk-Medium">
 							<ul className="flex flex-col gap-2 clickable">
 								<li className="text-[#F1F2F999]">Navigation</li>
 								<li>Home</li>
@@ -431,11 +433,11 @@ const Home = () => {
 						</div>
 					</section>
 
-					<section className="mt-8 px-32 bg-[#141414] py-7 w-full items-center flex flex-row justify-between">
+					<section className="mt-8 px-4 sm:px-16 md:px-32 bg-[#141414] py-7 w-full items-center flex flex-col gap-y-2 sm:flex-row justify-between">
 						<span className="text-[#EAECF866]">
 							AfriExamAce. All right reserved. © 2024
 						</span>
-						<div className="flex flex-row gap-4 items-center">
+						<div className="flex flex-row gap-2 md:gap-4 items-center">
 							<a
 								href="https://github.com/AfriExamAce"
 								target="_blank"
